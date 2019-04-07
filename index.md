@@ -29,8 +29,10 @@ Formally, for the target triple <s,r,o> and observed graph G, we want to identif
 
 ## Adding a new fact (CRIAGE-Add)
 
-
-
+<p align="justify">
+We are also interested in investigating the robustness of models, i.e., how sensitive are the predictions to small additions to the knowledge graph. Specifically, for a target prediction \triple{s,r,o}, we are interested in identifying a single fake fact \triple{s',r',o} that, when added to the knowledge graph G, changes the prediction score \psi(s,r,o) the most.
+Using \overline{\psi}(s,r,o) as the score after training on G\cup\{\triple{s',r',o}, we define the adversary as:
+</p>
 
 # Efficiently Identifying the Modification
 
