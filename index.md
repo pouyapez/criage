@@ -58,7 +58,7 @@ We first study the addition of a fact to the graph,and  then  extend  it  to  co
 
 <p align="justify">
 Using the approximations provided in the previoussection, Eq.(7)and(4.1), we can use brute forceenumeration to find the adversary〈s′,r′,o〉. Thisapproach is feasible when removing an observedtriple since the search space of such modificationsis usually small; it is the number of observed factsthat share the object with the target. On the otherhand, finding the most influential unobserved factsesrerf(es,er)(Fixed)zs,rInverterNetwork ̃s ̃es ̃r ̃erFigure 2:Inverter NetworkThe architecture of our in-verter function that translatezs,rto its respective( ̃s, ̃r).The encoder component is fixed to be the encoder net-work of DistMult and ConvE respectively.to add requires search over a much larger space ofall possible unobserved facts (that share the object).Instead, we identify the most influential unobservedfact〈s′,r′,o〉by using a gradient-based algorithmon vectorzs′,r′in the embedding space (reminder,zs′,r′=f(e′s,e′r)), solving the following continu-ous optimization problem inRd:
-<\p>
+</p>
 
 # Header 1
 
