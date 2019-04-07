@@ -35,9 +35,7 @@ We are also interested in investigating the robustness of models, i.e., how sens
 Using \overline{\psi}(s,r,o) as the score after training on G\cup\{\triple{s',r',o}, we define the adversary as:
 </p>
 
-![\Large \begin{align}
-   \operatorname*{argmax}_{(s', r')} \Delta_{(s',r')}(s,r,o)  %\in \nu} 
-\end{align}](https://latex.codecogs.com/svg.latex?x%3D%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb%5E2-4ac%7D%7D%7B2a%7D)
+![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%5Coperatorname*%7Bargmax%7D_%7B%28s%27%2C%20r%27%29%7D%20%5CDelta_%7B%28s%27%2Cr%27%29%7D%28s%2Cr%2Co%29%5Cnonumber%20%5Cend%7Balign%7D)
 
 # Efficiently Identifying the Modification
 
