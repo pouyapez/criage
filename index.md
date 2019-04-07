@@ -11,6 +11,8 @@ Representing entities and relations in an embedding space is a well-studied appr
 
 ![Branching](https://github.com/pouyapez/criage/blob/gh-pages/images/criage.png)
 
+![Branching](/images/criage.png)
+
 <p align="justify">
 For adversarial modifications on KGs, we first define the space of possible modifications. 
 For a target triple <s, r, o>, we constrain the possible triples that we can remove (or inject) to be in the form of <s', r', o> i.e s' and r' may be different from the target, but the object is not. 
