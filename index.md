@@ -50,6 +50,8 @@ We first study the addition of a fact to the graph,and  then  extend  it  to  co
  effect oneo. Further, calculating the effect of theattack onesanderrequires a third order derivativeof the loss, which is not practical (O(n3)in thenumber of parameters). In other words, we assumethates'esander'er. As a result, to calculatethe effect of the attack,ψ(s,r,o)−ψ(s,r,o), weneed to computeeo−eo, followed by:
  </p>
 
+![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%26%5Coverline%7B%5Cpsi%7D%7B%28s%2Cr%2Co%29%7D-%5Cpsi%28s%2C%20r%2C%20o%29%3D%20%5Cmathbf%7Bz%7D_%7Bs%2Cr%7D%20%28%5Coverline%7B%5Cmathbf%7Be%7D_o%7D-%5Cmathbf%7Be%7D_o%29%20%26%5Clabel%7Beq%3Aapprox%3Aadd%7D%5Cnonumber%5C%5C%20%26%3D%20%5Cmathbf%7Bz%7D_%7Bs%2Cr%7D%20%28%281-%5Cvarphi%29%20%28H_o%20&plus;%20%5Cvarphi%20%281-%5Cvarphi%29%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%5E%5Cintercal%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%29%5E%7B-1%7D%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%5E%5Cintercal%20%29.%26%5Cnonumber%20%5Cend%7Balign%7D)
+
 ### Continuous Optimization for Search
 
 
