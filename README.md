@@ -1,1 +1,0 @@
-Freelancer Jekyll theme  
