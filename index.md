@@ -9,17 +9,17 @@ Representing entities and relations in an embedding space is a well-studied appr
 
 * * *
 
-![alt text](https://github.com/pouyapez/criage/blob/gh-pages/images/criage.png)
+![Branching](https://github.com/pouyapez/criage/blob/gh-pages/images/criage.png)
 
+<p align="justify">
 For adversarial modifications on KGs, we first define the space of possible modifications. 
-For a target triple $\langle s, r, o\rangle$, we constrain the possible triples that we can remove (or inject) to be in the form of $\langle s', r', o\rangle$ i.e $s'$ and $r'$ may be different from the target, but the object is not.
-We analyze other forms of modifications such as $\langle s, r', o'\rangle$ and $\langle s, r', o\rangle$ in appendices \ref{app:srpop} and \ref{app:srpo}, and leave empirical evaluation of these modifications for future work. 
+For a target triple <s, r, o>, we constrain the possible triples that we can remove (or inject) to be in the form of <s', r', o> i.e s' and r' may be different from the target, but the object is not. 
 
 For explaining a target prediction, we are interested in identifying the observed fact that has the most influence (according to the model) on the prediction.
-We define \emph{influence} of an observed fact on the prediction as the change in the prediction score if the observed fact was not present when the embeddings were learned. Previous work have used this concept of influence similarly for several different tasks.
+We define influence of an observed fact on the prediction as the change in the prediction score if the observed fact was not present when the embeddings were learned. Previous work have used this concept of influence similarly for several different tasks.
 
-Formally, for the target triple $\triple{s,r,o}$ and observed graph $G$, we want to identify a neighboring triple $\triple{s',r',o}\in G$ such that the score $\psi(s,r,o)$ when trained on $G$ and the score $\overline{\psi}(s,r,o)$ when trained on $G-\{\triple{s',r',o}\}$ are maximally different, i.e.
-
+Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score \psi(s,r,o) when trained on G and the score \overline{\psi}(s,r,o) when trained on G-triple{s',r',o} are maximally different, i.e.
+<p>
 
 # Header 1
 
