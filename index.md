@@ -6,7 +6,7 @@ Representing entities and relations in an embedding space is a well-studied appr
 </p>
 # Criage
 * * *
-![Branching](https://github.com/pouyapez/criage/tree/gh-pages/images/criage.png)
+![alt text](https://github.com/pouyapez/criage/blob/gh-pages/images/criage.png)
 
 
 
