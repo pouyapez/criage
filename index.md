@@ -17,7 +17,7 @@ For a target triple <s, r, o>, we constrain the possible triples that we can rem
   
 </p>
 
-## Removing a fact (CRIAGE-Remove)
+### Removing a fact (CRIAGE-Remove)
 
 <p align="justify">
 For explaining a target prediction, we are interested in identifying the observed fact that has the most influence (according to the model) on the prediction.
@@ -26,8 +26,9 @@ We define influence of an observed fact on the prediction as the change in the p
 Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score \psi(s,r,o) when trained on G and the score \overline{\psi}(s,r,o) when trained on G-triple{s',r',o} are maximally different, i.e.
 </p>
 
+![\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}](https://latex.codecogs.com/svg.latex?x%3D%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb%5E2-4ac%7D%7D%7B2a%7D)
 
-## Adding a new fact (CRIAGE-Add)
+### Adding a new fact (CRIAGE-Add)
 
 <p align="justify">
 We are also interested in investigating the robustness of models, i.e., how sensitive are the predictions to small additions to the knowledge graph. Specifically, for a target prediction \triple{s,r,o}, we are interested in identifying a single fake fact \triple{s',r',o} that, when added to the knowledge graph G, changes the prediction score \psi(s,r,o) the most.
@@ -40,10 +41,10 @@ Using \overline{\psi}(s,r,o) as the score after training on G\cup\{\triple{s',r'
 
 In this section, we propose algorithms to addressmentioned challenges by (1) approximating the ef-fect of changing the graph on a target prediction,and (2) using continuous optimization for the dis-crete search over potential modifications.
 
-##  First-order Approximation of Influence
+### First-order Approximation of Influence
 
 
-##  Continuous Optimization for Search
+### Continuous Optimization for Search
 
 
 # Header 1
