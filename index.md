@@ -60,114 +60,32 @@ We first study the addition of a fact to the graph,and  then  extend  it  to  co
 Using the approximations provided in the previoussection, Eq.(7)and(4.1), we can use brute forceenumeration to find the adversary〈s′,r′,o〉. Thisapproach is feasible when removing an observedtriple since the search space of such modificationsis usually small; it is the number of observed factsthat share the object with the target. On the otherhand, finding the most influential unobserved factsesrerf(es,er)(Fixed)zs,rInverterNetwork ̃s ̃es ̃r ̃erFigure 2:Inverter NetworkThe architecture of our in-verter function that translatezs,rto its respective( ̃s, ̃r).The encoder component is fixed to be the encoder net-work of DistMult and ConvE respectively.to add requires search over a much larger space ofall possible unobserved facts (that share the object).Instead, we identify the most influential unobservedfact〈s′,r′,o〉by using a gradient-based algorithmon vectorzs′,r′in the embedding space (reminder,zs′,r′=f(e′s,e′r)), solving the following continu-ous optimization problem inRd:
 </p>
 
-# Header 1
+# Experiments
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+<p align="justify">
+We evaluate CRIAGE by (6.1) comparing CRIAGEestimate  with  the  actual  effect  of  the  attacks,(6.2) studying the effect of adversarial attacks onevaluation metrics, (6.3) exploring its applicationto the interpretability of KG representations, and(6.4) detecting incorrect triples.
+</p>
 
-## Header 2
+### Influence Function vs CRIAGE
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+![Branching](/images/IF.png)
 
-### Header 3
+<p align="justify">
+We show the timeto compute a single adversary by IF compared toCRIAGE, as we steadily grow the number of enti-ties (randomly chosen subgraphs), averaged over10 random triples. As it shows, CRIAGE is mostlyunaffected by the number of entities while IF in-creases quadratically. Considering that real-worldKGs have tens of thousands of times more entities,making IF unfeasible for them.
+</p>
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+### Robustness of Link Prediction Models
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+![Branching](/images/robustness.png)
 
-#### Header 4
+<p align="justify">
+Now we evaluate the effectiveness of CRIAGE tosuccessfullyattacklink prediction by adding falsefacts.  The goal here is to identify the attacks fortriples in the test data, and measuring their effect onMRR and Hits@ metrics (ranking evaluations) afterconducting the attack and retraining the model.Since this is the first work on adversarial attacksfor link prediction, we introduce several baselinesto compare against our method.  For finding theadversarial fact to add for the target triple〈s,r,o〉,we consider two baselines: 1) choosing a randomfake fact〈s′,r′,o〉(Random Attack); 2) finding(s′,r′)by first calculatingf(es,er)and then feed-ing−f(es,er)to the decoder of the inverter func-tion (Opposite Attack).  In addition to CRIAGE-Add,  we introduce two other alternatives of ourmethod:  (1)CRIAGE-FT, that uses CRIAGE toincreasethe score of fake fact over a test triple,i.e., we find the fake fact the model ranks secondafter the test triple, and identify the adversary forthem, and (2)CRIAGE-Bestthat selects betweenCRIAGE-Add and CRIAGE-FT attacks based onwhich has a higher estimated change in score.All-TestThe result of the attack on all test factsas targets is provided in the Table 4.   CRIAGE-Add outperforms the baselines, demonstrating itsability to effectively attack the KG representations.It seems DistMult is more robust against randomattacks,  while ConvE is more robust against de-signed attacks. CRIAGE-FT is more effective thanCRIAGE-Add since changing the score of a fakefact is easier than of actual facts; there is no ex-isting evidence to support fake facts. We also seethat YAGO3-10 models are more robust than thosefor WN18.  Looking at sample attacks (providedin Appendix A.4), CRIAGE mostly tries to changethetypeof the target object by associating it with asubject and a relation for a different entity type.Uncertain-TestTo better understand the effect ofattacks,  we consider a subset of test triples that1) the model predicts correctly, 2) difference be-tween their scores and the negative sample with thehighest score is minimum. This “Uncertain-Test”subset contains 100 triples from each of the original test sets, and we provide results of attacks on thisdata in Table 4. The attacks are much more effec-tive in this scenario, causing a considerable drop inthe metrics. Further, in addition to CRIAGE signifi-cantly outperforming other baselines, they indicatethat ConvE’s confidence is much more robust.
+</p>
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+###  Interpretability of Models
 
-##### Header 5
+![Branching](/images/int.png)
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+<p align="justify">
+To be able to understand and interpret why a link ispredicted using the opaque, dense embeddings, weneed to find out which part of the graph was mostinfluential on the prediction. To provide such expla-nations for each predictions, we identify the mostinfluential fact using CRIAGE-Remove. Instead offocusing on individual predictions, we aggregatethe explanations over the whole dataset for each re-lation using a simple rule extraction technique: we find simple patterns on subgraphs that surround thetarget triple and the removed fact from CRIAGE-Remove, and appear more than90%of the time.We only focus on extracting length-2horn rules,i.e.,R1(a,c)∧R2(c,b)⇒R(a,b), whereR(a,b)is the target andR2(c,b)is the removed fact.Table 5 shows extracted YAGO3-10 rules thatare common to both models, and ones that are not.The rules show several interesting inferences, suchthathasChildis often inferred via married parents,andisLocatedInvia transitivity. There are severaldifferences in how the models reason as well; Dist-Mult  often  uses  thehasCapitalas  an  intermedi-ate step forisLocatedIn, while ConvEincorrectlyusesisNeighbor.  We also compare against rulesextracted by Yang et al. [2015] for YAGO3-10 thatutilizes the structure of DistMult: they require do-main knowledge on types and cannot be applied toConvE. Interestingly, the extracted rules contain allthe rules provided by CRIAGE, demonstrating thatCRIAGE can be used to accurately interpret mod-els, including ones that are not interpretable, suchas ConvE. These are preliminary steps toward inter-pretability of link prediction models, and we leavemore analysis of interpretability to future work
+</p>
