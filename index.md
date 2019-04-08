@@ -21,7 +21,8 @@ For a target triple <s, r, o>, we constrain the possible triples that we can rem
 <p align="justify">
 For explaining a target prediction, we are interested in identifying the observed fact that has the most influence (according to the model) on the prediction.
 We define influence of an observed fact on the prediction as the change in the prediction score if the observed fact was not present when the embeddings were learned. Previous work have used this concept of influence similarly for several different tasks.
-
+</p>
+<p align="justify">
 Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score ψ(s,r,o) when trained on G and the score ψ'(s,r,o) when trained on G-<s',r',o> are maximally different, i.e.
 </p>
 
@@ -84,9 +85,11 @@ We show the time to compute a single adversary by IF (influence function) compar
 
 <p align="justify">
 Now we evaluate the effectiveness of CRIAGE to successfully attack link prediction by adding false facts. The goal here is to identify the attacks for triples in the test data, and measuring their effect on MRR and Hits@ metrics (ranking evaluations) after conducting the attack and retraining the model. Since this is the first work on adversarial attacks for link prediction, we introduce several baselines to compare against our method. For finding the adversarial fact to add for the target triple〈s,r,o〉,we consider two baselines: 1) choosing a random fake fact〈s′,r′,o〉(Random Attack); 2) finding (s′,r′) by first calculating f(e_s,e_r) and then feeding −f(e_s,e_r) to the decoder of the inverter function (Opposite Attack).  In addition to CRIAGE-Add, we introduce two other alternatives of our method:  (1) CRIAGE-FT, that uses CRIAGE to increase the score of fake fact over a test triple, i.e., we find the fake fact the model ranks second after the test triple, and identify the adversary for them, and (2) CRIAGE-Best that selects between CRIAGE-Add and CRIAGE-FT attacks based on which has a higher estimated change in score. 
- 
+</p>
+<p align="justify">
 All-Test: The result of the attack on all test factsas targets is provided in the Table 4. CRIAGE-Add outperforms the baselines, demonstrating its ability to effectively attack the KG representations. It seems DistMult is more robust against random attacks, while ConvE is more robust against designed attacks. CRIAGE-FT is more effective than CRIAGE-Add since changing the score of a fake fact is easier than of actual facts; there is no existing evidence to support fake facts. We also see that YAGO3-10 models are more robust than those for WN18. 
-
+</p>
+<p align="justify">
 Uncertain-Test: To better understand the effect of attacks,  we consider a subset of test triples that 1) the model predicts correctly, 2) difference between their scores and the negative sample with the highest score is minimum. This “Uncertain-Test” subset contains 100 triples from each of the original test sets, and we provide results of attacks on this data in Table 4. The attacks are much more effective in this scenario, causing a considerable drop in the metrics. Further, in addition to CRIAGE significantly outperforming other baselines, they indicate that ConvE’s confidence is much more robust.
 </p>
 
