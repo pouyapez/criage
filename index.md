@@ -22,31 +22,34 @@ For a target triple <s, r, o>, we constrain the possible triples that we can rem
 For explaining a target prediction, we are interested in identifying the observed fact that has the most influence (according to the model) on the prediction.
 We define influence of an observed fact on the prediction as the change in the prediction score if the observed fact was not present when the embeddings were learned. Previous work have used this concept of influence similarly for several different tasks.
 
-Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score ψ(s,r,o) when trained on G and the score ψ(s,r,o) when trained on G-triple{s',r',o} are maximally different, i.e.
+Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score ψ(s,r,o) when trained on G and the score ψ'(s,r,o) when trained on G-triple{s',r',o} are maximally different, i.e.
 </p>
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%5Coperatorname*%7Bargmax%7D_%7B%28s%27%2C%20r%27%29%5Cin%20%5Ctext%7BNei%7D%28o%29%7D%20%5CDelta_%7B%28s%27%2Cr%27%29%7D%28s%2Cr%2Co%29%5Cnonumber%20%5Cend%7Balign%7D)
 
+Where ∆(s,r,o) =ψ(s,r,o)−ψ'(s,r,o).
+
 ### Adding a new fact (CRIAGE-Add)
 
 <p align="justify">
-We are also interested in investigating the robustness of models, i.e., how sensitive are the predictions to small additions to the knowledge graph. Specifically, for a target prediction \triple{s,r,o}, we are interested in identifying a single fake fact \triple{s',r',o} that, when added to the knowledge graph G, changes the prediction score \psi(s,r,o) the most.
-Using \overline{\psi}(s,r,o) as the score after training on G\cup\{\triple{s',r',o}, we define the adversary as:
+We are also interested in investigating the robustness of models, i.e., how sensitive are the predictions to small additions to the knowledge graph. Specifically, for a target prediction <s,r,o>, we are interested in identifying a single fake fact <s',r',o> that, when added to the knowledge graph G, changes the prediction score ψ(s,r,o) the most.
+Using ψ'(s,r,o) as the score after training on G ∪ <s',r',o>, we define the adversary as:
 </p>
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%5Coperatorname*%7Bargmax%7D_%7B%28s%27%2C%20r%27%29%7D%20%5CDelta_%7B%28s%27%2Cr%27%29%7D%28s%2Cr%2Co%29%5Cnonumber%20%5Cend%7Balign%7D)
+
+Where ∆(s,r,o) =ψ(s,r,o)−ψ'(s,r,o).
 
 # Efficiently Identifying the Modification
 
 * * *
 
-In this section, we propose algorithms to addressmentioned challenges by (1) approximating the ef-fect of changing the graph on a target prediction,and (2) using continuous optimization for the dis-crete search over potential modifications.
+In this section, we propose algorithms to addressmentioned challenges by (1) approximating the effect of changing the graph on a target prediction,and (2) using continuous optimization for the discrete search over potential modifications.
 
 ### First-order Approximation of Influence
 
 <p align="justify">
-We first study the addition of a fact to the graph,and  then  extend  it  to  cover  removal  as  well.To  capture  the  effect  of  an  adversarial  modifi-cation  on  the  score  of  a  target  triple,  we  needto  study  the  effect  of  the  change  on  the  vectorrepresentations  of  the  target  triple.   We  usees,er,  andeoto  denote  the  embeddings  ofs,r,oat  the  solution  ofargminL(G),  and  when  con-sidering  the  adversarial  triple〈s′,r′,o〉,  we  usees,er, andeofor the new embeddings ofs,r,o,respectively.Thuses,er,eois  a  solution  toargminL(G∪ {〈s′,r′,o〉}),  which  can  also  bewritten asargminL(G) +L(〈s′,r′,o〉). Similarly,f(es,er)changes tof(es,er)after retraining.Since we only consider adversaries in the formof〈s′,r′,o〉, we only consider the effect of the at-tack oneoand neglect its effect onesander. Thisassumption is reasonable since the adversary is con-nected withoand directly affects its embeddingwhen added, but it will only have a secondary, neg-ligible effect onesander, in comparison to its
- effect oneo. Further, calculating the effect of theattack onesanderrequires a third order derivativeof the loss, which is not practical (O(n3)in thenumber of parameters). In other words, we assumethates'esander'er. As a result, to calculatethe effect of the attack,ψ(s,r,o)−ψ(s,r,o), weneed to computeeo−eo, followed by:
+We first study the addition of a fact to the graph, and  then  extend  it  to  cover  removal  as  well. To capture the effect of an adversarial modification on the score of a target triple, we need to study the effect of the change on the vector representations of the target triple. As a result, using the Taylor expansion on the changes of the loss after conducting the attack, we approximate ψ(s,r,o)−ψ'(s,r,o) as:
  </p>
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%26%5Coverline%7B%5Cpsi%7D%7B%28s%2Cr%2Co%29%7D-%5Cpsi%28s%2C%20r%2C%20o%29%3D%20%5Cmathbf%7Bz%7D_%7Bs%2Cr%7D%20%28%5Coverline%7B%5Cmathbf%7Be%7D_o%7D-%5Cmathbf%7Be%7D_o%29%20%26%5Clabel%7Beq%3Aapprox%3Aadd%7D%5Cnonumber%5C%5C%20%26%3D%20%5Cmathbf%7Bz%7D_%7Bs%2Cr%7D%20%28%281-%5Cvarphi%29%20%28H_o%20&plus;%20%5Cvarphi%20%281-%5Cvarphi%29%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%5E%5Cintercal%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%29%5E%7B-1%7D%20%5Cmathbf%7Bz%7D_%7Bs%27%2Cr%27%7D%5E%5Cintercal%20%29.%26%5Cnonumber%20%5Cend%7Balign%7D)
@@ -60,6 +63,8 @@ Using the approximations provided in the previoussection, Eq.(7)and(4.1), we can
 </p>
 
 # Experiments
+
+* * *
 
 <p align="justify">
 We evaluate CRIAGE by (6.1) comparing CRIAGEestimate  with  the  actual  effect  of  the  attacks,(6.2) studying the effect of adversarial attacks onevaluation metrics, (6.3) exploring its applicationto the interpretability of KG representations, and(6.4) detecting incorrect triples.
