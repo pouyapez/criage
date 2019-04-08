@@ -73,7 +73,7 @@ We evaluate CRIAGE by, 1) comparing CRIAGE estimate with the actual effect of th
 
 ### Influence Function vs CRIAGE
 
-![Branching](/images/IF.pdf)
+![Branching](/images/IF.png)
 
 <p align="justify">
 We show the time to compute a single adversary by IF (influence function) compared to CRIAGE, as we steadily grow the number of entities (randomly chosen subgraphs), averaged over 10 random triples. As it shows, CRIAGE is mostly unaffected by the number of entities while IF increases quadratically. Considering that real-world KGs have tens of thousands of times more entities, making IF unfeasible for them.
