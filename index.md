@@ -22,7 +22,7 @@ For a target triple <s, r, o>, we constrain the possible triples that we can rem
 For explaining a target prediction, we are interested in identifying the observed fact that has the most influence (according to the model) on the prediction.
 We define influence of an observed fact on the prediction as the change in the prediction score if the observed fact was not present when the embeddings were learned. Previous work have used this concept of influence similarly for several different tasks.
 
-Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score ψ(s,r,o) when trained on G and the score ψ'(s,r,o) when trained on G-triple{s',r',o} are maximally different, i.e.
+Formally, for the target triple <s,r,o> and observed graph G, we want to identify a neighboring triple <s',r',o> in G such that the score ψ(s,r,o) when trained on G and the score ψ'(s,r,o) when trained on G-<s',r',o> are maximally different, i.e.
 </p>
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20%5Coperatorname*%7Bargmax%7D_%7B%28s%27%2C%20r%27%29%5Cin%20%5Ctext%7BNei%7D%28o%29%7D%20%5CDelta_%7B%28s%27%2Cr%27%29%7D%28s%2Cr%2Co%29%5Cnonumber%20%5Cend%7Balign%7D)
@@ -59,7 +59,7 @@ We first study the addition of a fact to the graph, and  then  extend  it  to  c
 ![Branching](/images/autoencoder.png)
 
 <p align="justify">
-Using the approximations provided in the previoussection, Eq.(7)and(4.1), we can use brute forceenumeration to find the adversary〈s′,r′,o〉. Thisapproach is feasible when removing an observedtriple since the search space of such modificationsis usually small; it is the number of observed factsthat share the object with the target. On the otherhand, finding the most influential unobserved factsesrerf(es,er)(Fixed)zs,rInverterNetwork ̃s ̃es ̃r ̃erFigure 2:Inverter NetworkThe architecture of our in-verter function that translatezs,rto its respective( ̃s, ̃r).The encoder component is fixed to be the encoder net-work of DistMult and ConvE respectively.to add requires search over a much larger space ofall possible unobserved facts (that share the object).Instead, we identify the most influential unobservedfact〈s′,r′,o〉by using a gradient-based algorithmon vectorzs′,r′in the embedding space (reminder,zs′,r′=f(e′s,e′r)), solving the following continu-ous optimization problem inRd:
+Using the approximations provided in the previous section, we can use brute force enumeration to find the adversary〈s′,r′,o. This approach is feasible when removing an observed triple since the search space of such modifications is usually small; it is the number of observed facts that share the object with the target. On the other hand, finding the most influential unobserved facts to add requires search over a much larger space of all possible unobserved facts (that share the object). Instead, we identify the most influential unobserved fact〈s′,r′,o〉by using a gradient-based algorithm on vector Z(s',r') in the embedding space. After identifying the optimal Z(s′,r′), we still need to generate the pair (s′,r′). We design a network, shown in above figure, that maps the vector Z(s′,r′) to the entity-relation space, i.e., translating it into (s′,r′).
 </p>
 
 # Experiments
