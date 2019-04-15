@@ -45,7 +45,7 @@ Where ∆(s,r,o) =ψ(s,r,o)−ψ'(s,r,o).
 
 * * *
 
-In this section, we propose algorithms to addressmentioned challenges by (1) approximating the effect of changing the graph on a target prediction,and (2) using continuous optimization for the discrete search over potential modifications.
+In this section, we propose algorithms to address mentioned challenges by (1) approximating the effect of changing the graph on a target prediction,and (2) using continuous optimization for the discrete search over potential modifications.
 
 ### First-order Approximation of Influence
 
