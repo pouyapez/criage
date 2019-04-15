@@ -60,7 +60,7 @@ To capture the effect of an adversarial modification on the score of a target tr
 ![Branching](/images/autoencoder.png)
 
 <p align="justify">
-Using the approximations provided in the previous section, we can use brute force enumeration to find the adversary〈s′,r′,o. This approach is feasible when removing an observed triple since the search space of such modifications is usually small. On the other hand, finding the most influential unobserved facts to add requires search over a much larger space of all possible unobserved facts (that share the object). Instead, we identify the most influential unobserved fact〈s′,r′,o〉by using a gradient-based algorithm on vector Z(s',r') in the embedding space. After identifying the optimal Z(s′,r′), we map the vector Z(s′,r′) to the entity-relation space, i.e., translating it into (s′,r′) using above inverter network.
+Using the approximations provided in the previous section, we can use brute force enumeration to find the adversary〈s′,r′,o〉. This approach is feasible when removing an observed triple since the search space of such modifications is usually small. On the other hand, finding the most influential unobserved facts to add requires search over a much larger space of all possible unobserved facts (that share the object). Instead, we identify the most influential unobserved fact〈s′,r′,o〉by using a gradient-based algorithm on vector Z(s',r') in the embedding space. After identifying the optimal Z(s′,r′), we map the vector Z(s′,r′) to the entity-relation space, i.e., translating it into (s′,r′) using above inverter network.
 </p>
 
 # Experiments
