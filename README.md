@@ -8,7 +8,7 @@ The depedencies and runtime requirements are specified in the **README** for eac
 
 ## Project Page
 
-For more information please refer to our [project page](https://pouyapez.github.io/mkbe/)
+For more information please refer to our [project page](https://pouyapez.github.io/mkbe/).
 
 ## Citation
 
