@@ -1,21 +1,13 @@
-
-
-
-
 ## Installation
 
-This repo supports Linux and Python installation via Anaconda. 
-
-1. Install [PyTorch](https://github.com/pytorch/pytorch) using [Anaconda](https://www.continuum.io/downloads)
+1. Install [PyTorch (version 0.3.0.post4)](https://github.com/pytorch/pytorch).
 2. Install the requirements `pip install -r requirements`
-3. Run the preprocessing script for WN18RR, FB15k-237, YAGO3-10, UMLS, Kinship, and Nations: `sh preprocess.sh`
-3. You can now run the model
 
 
+## Running a model
 
-
-bash run.sh inject DistMult WN-18 True 
-
+To run the model you just need to run the following bash file: 
+ > bash run.sh inject DistMult WN-18 True 
 
 
 # Dependency
