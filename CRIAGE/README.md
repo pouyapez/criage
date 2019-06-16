@@ -1,6 +1,6 @@
 ## Installation
 
-1. Install [PyTorch (version 0.3.0.post4)](https://github.com/pytorch/pytorch).
+1. Install [PyTorch (version 0.3.0.post4)](http://pytorch.cn/previous-versions/).
 2. Install the requirements `pip install -r requirements`
 
 
