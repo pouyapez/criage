@@ -4,10 +4,13 @@
 2. Install the requirements `pip install -r requirements`
 
 
-## Running a model
+## Running the model
 
-To run the model you just need to run the following bash file: 
+Choosing the link prediction method and the dataset, to run the model for injecting the attacks, you just need to run the following bash file: 
  > bash run.sh inject DistMult WN-18 True 
+
+To run the model for removing the attacks you just need to run the following bash file: 
+ > bash run.sh remove DistMult WN-18 True 
 
 
 # Dependency
