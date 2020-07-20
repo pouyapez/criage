@@ -215,19 +215,6 @@ def preprocess(dataset):
     return vocab2id, id2vocab
 
 def main():
-    parser=argparse.ArgumentParser(description='Concolic testing for neural networks' )
-    parser.add_argument("--dataset", default="kinship",
-                    help="the dataset")
-    parser.add_argument("--emb_dim", type=int,  default=10,
-                    help="the extra training dataset")
-    parser.add_argument("--output_dir", default="./",
-                    help="the output data directory")
-    parser.add_argument("--test_idx", dest="test_idx", type=int, default=1,
-                    help="the target test triple index")
-    parser.add_argument("--train_steps", dest="train_steps", type=int, default=10000,
-                    help="the number of train steps")
-
-    args=parser.parse_args()
     print(args)
 
     # dataset = 'nations'
@@ -629,6 +616,20 @@ def main():
 
 
 if __name__ == '__main__':
+    parser=argparse.ArgumentParser(description='Concolic testing for neural networks' )
+    parser.add_argument("--dataset", default="kinship",
+                    help="the dataset")
+    parser.add_argument("--emb_dim", type=int,  default=10,
+                    help="the extra training dataset")
+    parser.add_argument("--output_dir", default="./",
+                    help="the output data directory")
+    parser.add_argument("--test_idx", dest="test_idx", type=int, default=1,
+                    help="the target test triple index")
+    parser.add_argument("--train_steps", dest="train_steps", type=int, default=10000,
+                    help="the number of train steps")
+
+    args=parser.parse_args()
+ 
     main()
 
 
