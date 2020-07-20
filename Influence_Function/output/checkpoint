@@ -1,0 +1,2 @@
+model_checkpoint_path: "kinship_model.ckpt"
+all_model_checkpoint_paths: "kinship_model.ckpt"
